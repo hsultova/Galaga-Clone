@@ -299,7 +299,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 20
+  BoundsOffset: 2
   GameCamera: {fileID: 519420031}
+  BulletPrefab: {fileID: 7520641170858053784, guid: faca24a00e967ea41a358dccc7a7cd3c,
+    type: 3}
 --- !u!61 &1083344347
 BoxCollider2D:
   m_ObjectHideFlags: 0

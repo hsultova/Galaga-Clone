@@ -5,6 +5,10 @@ public class Ship : MonoBehaviour
 	public float Speed = 2f;
 	public float BoundsOffset = 2f;
 	public Camera GameCamera;
+	public Transform BulletPrefab;
+	public float BulletSpawnTime = 0.5f;
+
+	private float startTime;
 
 	// Start is called before the first frame update
 	void Start()
@@ -31,6 +35,26 @@ public class Ship : MonoBehaviour
 		if (newPosition.x > left.x + BoundsOffset && newPosition.x < right.x - BoundsOffset)
 		{
 			transform.position = newPosition;
+		}
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Instantiate(BulletPrefab, transform);
+			startTime = Time.time;
+		}
+
+		if (Input.GetKey(KeyCode.Space))
+		{
+			if (Time.time - startTime > BulletSpawnTime)
+			{
+				Instantiate(BulletPrefab, transform);
+				startTime = Time.time;
+			}
+		}
+
+		if (Input.GetKeyUp(KeyCode.Space))
+		{
+			startTime = 0;
 		}
 	}
 }
