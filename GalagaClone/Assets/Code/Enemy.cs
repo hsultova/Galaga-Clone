@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
 	public float MovePeriod = 2f;
 	public Transform BulletPrefab;
 
+	public int Score = 50;
+
 	//private State _state;
 	private float _shootTime = 0.0f;
 	private float _moveTime = 0.0f;
@@ -59,6 +61,7 @@ public class Enemy : MonoBehaviour
 	{
 		if (collision.gameObject.tag == GalagaHelper.GetTag(Tags.Player))
 		{
+			GameManager.Instance.Ship.Lives--;
 			Destroy(collision.gameObject);
 			Destroy(gameObject);
 		}

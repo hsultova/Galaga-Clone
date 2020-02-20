@@ -11,6 +11,8 @@ class ShipBullet : Bullet
 	{
 		if (collision.gameObject.tag == GalagaHelper.GetTag(Tags.Enemy))
 		{
+			var enemy = collision.gameObject.GetComponent<Enemy>();
+			GameManager.Instance.Score += enemy.Score;
 			Destroy(collision.gameObject);
 			Destroy(gameObject);
 		}

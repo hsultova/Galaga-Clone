@@ -6,6 +6,11 @@ public class Ship : MonoBehaviour
 	public float Speed = 2f;
 	public float BoundsOffset = 2f;
 
+	[Header("Visual")]
+	public GameObject life1;
+	public GameObject life2;
+	public GameObject life3;
+
 	[Header("Camera")]
 	public Camera GameCamera;
 
@@ -14,6 +19,38 @@ public class Ship : MonoBehaviour
 	public float BulletSpawnTime = 0.5f;
 
 	private float _startTime;
+
+	private int _lives = 3;
+	public int Lives
+	{
+		get { return _lives; }
+		set
+		{
+			_lives = value;
+			if (_lives == 0)
+			{
+				//TODO
+			}
+			else if (_lives == 1)
+			{
+				life1.SetActive(true);
+				life2.SetActive(false);
+				life3.SetActive(false);
+			}
+			else if (_lives == 2)
+			{
+				life1.SetActive(true);
+				life2.SetActive(true);
+				life3.SetActive(false);
+			}
+			if (_lives == 3)
+			{
+				life1.SetActive(true);
+				life2.SetActive(true);
+				life3.SetActive(true);
+			}
+		}
+	}
 
 	// Start is called before the first frame update
 	void Start()
