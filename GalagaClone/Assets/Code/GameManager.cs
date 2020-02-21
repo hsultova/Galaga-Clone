@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -30,6 +32,11 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+	}
+
+	public void LoadGameOverScene()
+	{
+		SceneManager.LoadScene(GalagaHelper.GetScene(Scenes.GameOver));
 	}
 }
 

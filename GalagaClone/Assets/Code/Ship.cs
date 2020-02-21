@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Ship : MonoBehaviour
 	private float _startTime;
 
 	private int _lives = 3;
+	private Vector3 _startPosition;
+
 	public int Lives
 	{
 		get { return _lives; }
@@ -29,9 +32,14 @@ public class Ship : MonoBehaviour
 			_lives = value;
 			if (_lives == 0)
 			{
-				//TODO
+				GameManager.Instance.LoadGameOverScene();
 			}
-			else if (_lives == 1)
+			else
+			{
+				Reset();
+			}
+
+			if (_lives == 1)
 			{
 				life1.SetActive(true);
 				life2.SetActive(false);
@@ -43,7 +51,7 @@ public class Ship : MonoBehaviour
 				life2.SetActive(true);
 				life3.SetActive(false);
 			}
-			if (_lives == 3)
+			else if (_lives == 3)
 			{
 				life1.SetActive(true);
 				life2.SetActive(true);
@@ -55,7 +63,7 @@ public class Ship : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		_startPosition = transform.position;
 	}
 
 	// Update is called once per frame
@@ -107,5 +115,10 @@ public class Ship : MonoBehaviour
 		{
 			transform.position = newPosition;
 		}
+	}
+
+	public void Reset()
+	{
+		transform.position = _startPosition;
 	}
 }

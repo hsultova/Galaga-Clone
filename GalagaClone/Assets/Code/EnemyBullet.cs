@@ -12,7 +12,8 @@ class EnemyBullet : Bullet
 		if (collision.gameObject.tag == GalagaHelper.GetTag(Tags.Player))
 		{
 			GameManager.Instance.Ship.Lives--;
-			Destroy(collision.gameObject);
+
+			//Destroy(collision.gameObject);
 			Destroy(gameObject);
 		}
 	}
