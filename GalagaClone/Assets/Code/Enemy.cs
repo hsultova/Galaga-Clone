@@ -28,17 +28,37 @@ public class Enemy : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Time.time > _moveTime)
+		if (IsReadytoMove())
 		{
-			_moveTime += MovePeriod;
 			Move();
 		}
 
+		if (IsReadytoShoot())
+		{
+			Fire();
+		}
+	}
+
+	private bool IsReadytoShoot()
+	{
 		if (Time.time > _shootTime)
 		{
 			_shootTime += ShootPeriod;
-			Fire();
+			return true;
 		}
+
+		return false;
+	}
+
+	private bool IsReadytoMove()
+	{
+		if (Time.time > _moveTime)
+		{
+			_moveTime += MovePeriod;
+			return true;
+		}
+
+		return false;
 	}
 
 	private void Fire()
