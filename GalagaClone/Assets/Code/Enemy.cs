@@ -28,10 +28,10 @@ public class Enemy : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (IsReadytoMove())
-		{
-			Move();
-		}
+		//if (IsReadytoMove())
+		//{
+		//	Move();
+		//}
 
 		if (IsReadytoShoot())
 		{
@@ -66,16 +66,16 @@ public class Enemy : MonoBehaviour
 		Instantiate(BulletPrefab, transform);
 	}
 
-	private void Move()
-	{
-		transform.position = new Vector2(transform.position.x, transform.position.y - Speed * Time.deltaTime);
-		Vector3 down = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
-		Vector3 up = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, Camera.main.nearClipPlane));
-		if (transform.position.y > up.y || transform.position.y < down.y)
-		{
-			transform.position = new Vector2(transform.position.x, -transform.position.y);
-		}
-	}
+	//private void Move()
+	//{
+	//	transform.position = new Vector2(transform.position.x, transform.position.y - Speed * Time.deltaTime);
+	//	Vector3 down = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+	//	Vector3 up = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, Camera.main.nearClipPlane));
+	//	if (transform.position.y > up.y || transform.position.y < down.y)
+	//	{
+	//		transform.position = new Vector2(transform.position.x, -transform.position.y);
+	//	}
+	//}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
