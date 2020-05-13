@@ -32,6 +32,7 @@ public class WaypointComponent : MonoBehaviour
 		}
 
 		if (_waypointIndex == -1)
-			_waypointIndex = _waypoints.Length - 1;
+			return;
+			//_waypointIndex = _waypoints.Length - 1;
 	}
 }
