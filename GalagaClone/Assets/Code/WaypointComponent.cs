@@ -2,22 +2,21 @@
 
 public class WaypointComponent : MonoBehaviour
 {
+	public GameObject Waypoints;
 	public float MoveSpeed = 5f;
 
-	private Waypoint[] _waypoints;
+	private GameObject[] _waypoints;
 	private int _waypointIndex = 0;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		_waypoints = Resources.FindObjectsOfTypeAll<Waypoint>();
-		_waypointIndex = _waypoints.Length - 1;
-
-		//to move
-		var waypoints = FindObjectsOfType<Waypoint>();
-		foreach (var waypoint in waypoints)
+		_waypoints = new GameObject[Waypoints.transform.childCount];//Resources.FindObjectsOfTypeAll<Waypoint>();
+		int i = 0;
+		foreach(Transform child in Waypoints.transform)
 		{
-			waypoint.gameObject.SetActive(false);
+			_waypoints[i] = child.gameObject;
+			i++;
 		}
 	}
 
@@ -28,11 +27,10 @@ public class WaypointComponent : MonoBehaviour
 
 		if (transform.position == _waypoints[_waypointIndex].transform.position)
 		{
-			_waypointIndex--;
+			_waypointIndex++;
 		}
 
-		if (_waypointIndex == -1)
-			return;
-			//_waypointIndex = _waypoints.Length - 1;
+		if (_waypointIndex == _waypoints.Length)
+			_waypointIndex = 0;
 	}
 }

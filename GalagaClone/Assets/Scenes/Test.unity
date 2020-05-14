@@ -317,6 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52292e8fa373c142bff1c43e2c6a568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Waypoints: {fileID: 6449089615333666456, guid: 88bf51208c7a5f24b91a313096192191,
+    type: 3}
   MoveSpeed: 5
 --- !u!1 &1395154047
 GameObject:
@@ -596,6 +598,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Waypoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449089615333666456, guid: 88bf51208c7a5f24b91a313096192191,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6449089615333666457, guid: 88bf51208c7a5f24b91a313096192191,
         type: 3}
