@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
 	public void LoadGameOverScene()
 	{
-		SceneManager.LoadScene(GalagaHelper.GetScene(Scenes.GameOver));
+		SceneManager.LoadScene(GalagaHelper.GetScene(Scene.GameOver));
 	}
 }
 

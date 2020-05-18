@@ -34,7 +34,7 @@ public class StageManager : MonoBehaviour
 
 	private static void LoadStage()
 	{
-		SceneManager.LoadScene(GalagaHelper.GetScene(Scenes.Stage1));
+		SceneManager.LoadScene(GalagaHelper.GetScene(Scene.Stage1));
 	}
 
 }

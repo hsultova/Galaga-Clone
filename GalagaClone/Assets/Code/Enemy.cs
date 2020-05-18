@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-//public enum State
-//{
-//	Stay,
-//	Move
-//}
+public enum State
+{
+	Stay,
+	Move
+}
 
 public class Enemy : MonoBehaviour
 {
@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == GalagaHelper.GetTag(Tags.Player))
+		if (collision.gameObject.tag == GalagaHelper.GetTag(Tag.Player))
 		{
 			GameManager.Instance.Ship.Lives--;
 			Destroy(collision.gameObject);

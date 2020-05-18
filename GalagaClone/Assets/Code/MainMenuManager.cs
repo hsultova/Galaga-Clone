@@ -7,7 +7,7 @@ public class MainMenuManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
 		{
-			SceneManager.LoadScene(GalagaHelper.GetScene(Scenes.Stage));
+			SceneManager.LoadScene(GalagaHelper.GetScene(Scene.Stage));
 		}
 	}
 }

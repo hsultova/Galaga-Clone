@@ -9,7 +9,7 @@ class EnemyBullet : Bullet
 
 	public override void OnCollision(Collider2D collision)
 	{
-		if (collision.gameObject.tag == GalagaHelper.GetTag(Tags.Player))
+		if (collision.gameObject.tag == GalagaHelper.GetTag(Tag.Player))
 		{
 			GameManager.Instance.Ship.Lives--;
 

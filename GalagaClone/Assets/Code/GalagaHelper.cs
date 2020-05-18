@@ -1,10 +1,10 @@
-﻿public enum Tags
+﻿public enum Tag
 {
 	Player,
 	Enemy
 }
 
-public enum Scenes
+public enum Scene
 {
 	Main,
 	Stage,
@@ -12,32 +12,38 @@ public enum Scenes
 	GameOver
 }
 
+public enum Pattern
+{
+	Blue,
+	Red,
+	Green
+}
 
 public static class GalagaHelper
 {
-	public static string GetTag(this Tags tag)
+	public static string GetTag(this Tag tag)
 	{ 
 		switch(tag)
 		{
-			case Tags.Player:
+			case Tag.Player:
 				return "Player";
-			case Tags.Enemy:
+			case Tag.Enemy:
 				return "Enemy";
 			default: return string.Empty;
 		}
 	}
 
-	public static string GetScene(this Scenes scene)
+	public static string GetScene(this Scene scene)
 	{
 		switch (scene)
 		{
-			case Scenes.Main:
+			case Scene.Main:
 				return "MainScene";
-			case Scenes.Stage:
+			case Scene.Stage:
 				return "StageScene";
-			case Scenes.Stage1:
+			case Scene.Stage1:
 				return "StageScene1";
-			case Scenes.GameOver:
+			case Scene.GameOver:
 				return "GameOverScene";
 			default: return string.Empty;
 		}

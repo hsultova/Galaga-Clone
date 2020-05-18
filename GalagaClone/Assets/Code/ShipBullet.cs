@@ -9,7 +9,7 @@ class ShipBullet : Bullet
 
 	public override void OnCollision(Collider2D collision)
 	{
-		if (collision.gameObject.tag == GalagaHelper.GetTag(Tags.Enemy))
+		if (collision.gameObject.tag == GalagaHelper.GetTag(Tag.Enemy))
 		{
 			var enemy = collision.gameObject.GetComponent<Enemy>();
 			GameManager.Instance.Score += enemy.Score;
