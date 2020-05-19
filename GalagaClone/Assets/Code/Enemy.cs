@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public enum State
 {
@@ -19,10 +20,20 @@ public class Enemy : MonoBehaviour
 	private float _shootTime = 0.0f;
 	private float _moveTime = 0.0f;
 
+	private MoveByPattern _moveByPatternComponent;
+
 	// Start is called before the first frame update
 	void Start()
 	{
+		_moveByPatternComponent = GetComponent<MoveByPattern>();
+		_moveByPatternComponent.PatternFinished += OnPatternFinished;
 
+		_moveByPatternComponent.StartPattern();
+	}
+
+	private void OnDestroy()
+	{
+		_moveByPatternComponent.PatternFinished -= OnPatternFinished;
 	}
 
 	// Update is called once per frame
@@ -37,6 +48,11 @@ public class Enemy : MonoBehaviour
 		{
 			Fire();
 		}
+	}
+
+	private void OnPatternFinished()
+	{
+		transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
 	}
 
 	private bool IsReadytoShoot()

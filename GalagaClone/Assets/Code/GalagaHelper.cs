@@ -1,4 +1,6 @@
-﻿public enum Tag
+﻿using UnityEngine;
+
+public enum Tag
 {
 	Player,
 	Enemy
@@ -12,7 +14,7 @@ public enum Scene
 	GameOver
 }
 
-public enum Pattern
+public enum EnemyType
 {
 	Blue,
 	Red,
@@ -48,4 +50,11 @@ public static class GalagaHelper
 			default: return string.Empty;
 		}
 	}
+}
+
+[System.Serializable]
+public class EnenmySpritePair
+{
+	public EnemyType Type;
+	public Sprite Image;
 }
