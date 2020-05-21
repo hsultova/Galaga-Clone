@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bounds
   - Enemy
+  - Dynamic
   layers:
   - Default
   - TransparentFX

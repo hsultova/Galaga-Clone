@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum State
 {
@@ -21,11 +20,18 @@ public class Enemy : MonoBehaviour
 	private float _moveTime = 0.0f;
 
 	private MoveByPattern _moveByPatternComponent;
+	private bool _canMoveByGrid = false;
+	private bool _isMovingByGrid = false;
+
+	private Vector3 _snapToPosition;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		_moveByPatternComponent = GetComponent<MoveByPattern>();
+
+		if (_moveByPatternComponent == null)
+			Debug.Log("Move By Pattern Component is missing");
 		_moveByPatternComponent.PatternFinished += OnPatternFinished;
 
 		_moveByPatternComponent.StartPattern();
@@ -44,6 +50,33 @@ public class Enemy : MonoBehaviour
 		//	Move();
 		//}
 
+		if (_isMovingByGrid && transform.position == _snapToPosition)
+		{
+			_isMovingByGrid = false;
+			_canMoveByGrid = false;
+			_snapToPosition = Vector3.zero;
+		}
+		else if (_snapToPosition != Vector3.zero)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, _snapToPosition, _moveByPatternComponent.MoveSpeed * Time.deltaTime);
+		}
+
+		if (_canMoveByGrid && !_isMovingByGrid)
+		{
+			foreach (Transform cell in GameManager.Instance.Grid.transform)
+			{
+				var gridCell = cell.GetComponent<GridCell>();
+				if (gridCell.IsFree)
+				{
+					gridCell.IsFree = false;
+					_isMovingByGrid = true;
+					transform.position = Vector3.MoveTowards(transform.position, cell.position, _moveByPatternComponent.MoveSpeed * Time.deltaTime);
+					_snapToPosition = cell.position;
+					break;
+				}
+			}
+		}
+
 		if (IsReadytoShoot())
 		{
 			Fire();
@@ -52,7 +85,8 @@ public class Enemy : MonoBehaviour
 
 	private void OnPatternFinished()
 	{
-		transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
+		//transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
+		_canMoveByGrid = true;
 	}
 
 	private bool IsReadytoShoot()

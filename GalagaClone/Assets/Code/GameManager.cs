@@ -6,8 +6,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 	public Ship Ship;
-	public Enemy Enemy;
 	public Text ScoreText;
+
+	public GameObject Grid;
+
+	[Header("Enemies")]
+	public Enemy Enemy;
+	public int enemiesToSpawn;
+	public float enemyOffset;
 
 	public List<EnenmySpritePair> EnemySprites;
 
@@ -39,13 +45,24 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		SpawnEnemy();
+		SpawnEnemies(enemiesToSpawn, enemyOffset);
 	}
 
-	private void SpawnEnemy()
+	private void SpawnEnemies(int max, float offset)
 	{
-		Vector3 cameraPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0));
-		Instantiate(Enemy, cameraPosition, Quaternion.identity);
+		for (int i = 0; i < max; i++)
+		{
+			var random = Random.Range(0, 3);
+			Enemy.GetComponent<SpriteRenderer>().sprite = EnemySprites.ToArray()[random].Image;
+
+			Vector3 cameraPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0));
+			var instantiatedEnemy = Instantiate(Enemy, new Vector2(cameraPosition.x + i*offset, cameraPosition.y + 5), Quaternion.identity);
+			var dynamic = GameObject.FindGameObjectWithTag("Dynamic");
+			if(dynamic != null)
+				instantiatedEnemy.transform.SetParent(dynamic.transform);
+			
+		}
+
 	}
 
 	public void LoadGameOverScene()
