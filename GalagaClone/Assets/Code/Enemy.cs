@@ -50,6 +50,16 @@ public class Enemy : MonoBehaviour
 		//	Move();
 		//}
 
+		MoveByGrid();
+
+		if (IsReadytoShoot())
+		{
+			Fire();
+		}
+	}
+
+	private void MoveByGrid()
+	{
 		if (_isMovingByGrid && transform.position == _snapToPosition)
 		{
 			_isMovingByGrid = false;
@@ -76,16 +86,10 @@ public class Enemy : MonoBehaviour
 				}
 			}
 		}
-
-		if (IsReadytoShoot())
-		{
-			Fire();
-		}
 	}
 
 	private void OnPatternFinished()
 	{
-		//transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
 		_canMoveByGrid = true;
 	}
 

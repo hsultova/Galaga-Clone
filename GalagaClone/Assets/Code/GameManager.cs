@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
 
 	[Header("Enemies")]
 	public Enemy Enemy;
-	public int enemiesToSpawn;
-	public float enemyOffset;
+	[SerializeField]
+	private int enemiesToSpawn;
+	[SerializeField]
+	private float enemyOffset;
 
 	public List<EnenmySpritePair> EnemySprites;
 
