@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2852663231791097324}
   - component: {fileID: -4946707355680787617}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: BlueEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   MovePeriod: 2
   BulletPrefab: {fileID: 7520641170858053784, guid: 481d4a16c25497f48beefcac15be2d7b,
     type: 3}
+  Type: 1
   Score: 50
 --- !u!114 &-4946707355680787617
 MonoBehaviour:

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public enum State
 {
@@ -13,6 +14,8 @@ public class Enemy : MonoBehaviour
 	public float MovePeriod = 2f;
 	public Transform BulletPrefab;
 
+	public EnemyType Type;
+
 	public int Score = 50;
 
 	//private State _state;
@@ -24,6 +27,8 @@ public class Enemy : MonoBehaviour
 	private bool _isMovingByGrid = false;
 
 	private Vector3 _snapToPosition;
+
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -76,7 +81,7 @@ public class Enemy : MonoBehaviour
 			foreach (Transform cell in GameManager.Instance.Grid.transform)
 			{
 				var gridCell = cell.GetComponent<GridCell>();
-				if (gridCell.IsFree)
+				if (gridCell.IsFree && gridCell.Type == Type)
 				{
 					gridCell.IsFree = false;
 					_isMovingByGrid = true;

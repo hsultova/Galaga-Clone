@@ -45,12 +45,15 @@ public class GridEditor : EditorWindow
 		EditorGUILayout.BeginHorizontal();
 		if (GUILayout.Button("Generate"))
 		{
+			int i = 1;
 			for (int row = 0; row < _rows; row++)
 			{
 				for (int column = 0; column < _columns; column++)
 				{
-					var newObject = Instantiate(_gridPrefab, new Vector2(_gridParent.transform.position.x + row * _offset, _gridParent.transform.position.y + column * _offset), Quaternion.identity);
-					newObject.transform.SetParent(_gridParent.transform);
+					var cell = Instantiate(_gridPrefab, new Vector2(_gridParent.transform.position.x + row * _offset, _gridParent.transform.position.y + column * _offset), Quaternion.identity);
+					cell.transform.SetParent(_gridParent.transform);
+					cell.name = "Cell" + i;
+					i++;
 				}
 			}
 		}

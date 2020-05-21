@@ -77,6 +77,7 @@ public class WaypointEditor : EditorWindow
 
 			GameObject waypointObject = Instantiate(_waypointPrefab, mousePosition, Quaternion.identity);
 			waypointObject.transform.SetParent(_waypointsParent.transform);
+			waypointObject.name = "Waypoint" + _waypointObjects.Count;
 
 			TextMesh textObject = Instantiate(_textPrefab, mousePosition, Quaternion.identity);
 			textObject.transform.SetParent(waypointObject.transform);

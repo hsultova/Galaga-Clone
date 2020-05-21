@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,15 +8,7 @@ public class GameManager : MonoBehaviour
 	public Text ScoreText;
 
 	public GameObject Grid;
-
-	[Header("Enemies")]
-	public Enemy Enemy;
-	[SerializeField]
-	private int enemiesToSpawn;
-	[SerializeField]
-	private float enemyOffset;
-
-	public List<EnenmySpritePair> EnemySprites;
+	public EnemyGroup[] EnemyGroups;
 
 	private int _score = 0;
 	public int Score
@@ -47,22 +38,22 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		SpawnEnemies(enemiesToSpawn, enemyOffset);
+		foreach (var group in EnemyGroups)
+		{
+			Vector3 cameraPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0));
+			SpawnEnemies(group.Enemies, group.Offset, group.Prefab, cameraPosition);
+		}
 	}
 
-	private void SpawnEnemies(int max, float offset)
+	private void SpawnEnemies(int enemiesToSpawn, float offset, GameObject prefab, Vector3 position)
 	{
-		for (int i = 0; i < max; i++)
+		for (int i = 0; i < enemiesToSpawn; i++)
 		{
-			var random = Random.Range(0, 3);
-			Enemy.GetComponent<SpriteRenderer>().sprite = EnemySprites.ToArray()[random].Image;
-
-			Vector3 cameraPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0));
-			var instantiatedEnemy = Instantiate(Enemy, new Vector2(cameraPosition.x + i*offset, cameraPosition.y + 5), Quaternion.identity);
+			var instantiatedEnemy = Instantiate(prefab, new Vector2(position.x + i * offset, position.y + 5), Quaternion.identity);			
 			var dynamic = GameObject.FindGameObjectWithTag("Dynamic");
-			if(dynamic != null)
+			if (dynamic != null)
 				instantiatedEnemy.transform.SetParent(dynamic.transform);
-			
+
 		}
 
 	}

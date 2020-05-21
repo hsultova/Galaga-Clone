@@ -16,6 +16,7 @@ public enum Scene
 
 public enum EnemyType
 {
+	None,
 	Blue,
 	Red,
 	Green
@@ -50,11 +51,4 @@ public static class GalagaHelper
 			default: return string.Empty;
 		}
 	}
-}
-
-[System.Serializable]
-public class EnenmySpritePair
-{
-	public EnemyType Type;
-	public Sprite Image;
 }
