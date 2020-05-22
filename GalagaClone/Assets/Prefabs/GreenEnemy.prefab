@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2852663231791097324}
   - component: {fileID: -4946707355680787617}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: GreenEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4431960800551953726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.03, y: 7.49, z: 0}
-  m_LocalScale: {x: 0.22113599, y: 0.21130201, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -127,16 +127,8 @@ MonoBehaviour:
   MovePeriod: 2
   BulletPrefab: {fileID: 7520641170858053784, guid: 481d4a16c25497f48beefcac15be2d7b,
     type: 3}
-  EnemySprites:
-  - Type: 1
-    Image: {fileID: 7727492313054507650, guid: 4aeb70cd2f904e24db73add3ff04e828, type: 3}
-  - Type: 2
-    Image: {fileID: 2123940523589455902, guid: 4aeb70cd2f904e24db73add3ff04e828, type: 3}
-  - Type: 3
-    Image: {fileID: -7619334830107094053, guid: 4aeb70cd2f904e24db73add3ff04e828,
-      type: 3}
-  Score: 50
   Type: 3
+  Score: 50
 --- !u!114 &-4946707355680787617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,5 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52292e8fa373c142bff1c43e2c6a568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pattern: {fileID: 4073454117385232377, guid: 331378d3d6ca4754ead17bd21e618a70, type: 3}
+  Pattern: {fileID: 2312435939639309097, guid: a0663e712d631bd43b2961599823ac4f, type: 3}
   MoveSpeed: 10

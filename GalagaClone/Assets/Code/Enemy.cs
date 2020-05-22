@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum State
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
 
 	private Vector3 _snapToPosition;
 
+	private List<GridCell> _orderedGrid = new List<GridCell>();
 
 
 	// Start is called before the first frame update
@@ -40,6 +42,14 @@ public class Enemy : MonoBehaviour
 		_moveByPatternComponent.PatternFinished += OnPatternFinished;
 
 		_moveByPatternComponent.StartPattern();
+
+		foreach (Transform cell in GameManager.Instance.Grid.transform)
+		{
+			var gridCell = cell.GetComponent<GridCell>();
+			_orderedGrid.Add(gridCell);
+		}
+
+		_orderedGrid = _orderedGrid.OrderByDescending(cell => cell.FillIndex).ToList();
 	}
 
 	private void OnDestroy()
@@ -54,7 +64,6 @@ public class Enemy : MonoBehaviour
 		//{
 		//	Move();
 		//}
-
 		MoveByGrid();
 
 		if (IsReadytoShoot())
@@ -78,15 +87,14 @@ public class Enemy : MonoBehaviour
 
 		if (_canMoveByGrid && !_isMovingByGrid)
 		{
-			foreach (Transform cell in GameManager.Instance.Grid.transform)
+			foreach (var gridCell in _orderedGrid)
 			{
-				var gridCell = cell.GetComponent<GridCell>();
 				if (gridCell.IsFree && gridCell.Type == Type)
 				{
 					gridCell.IsFree = false;
 					_isMovingByGrid = true;
-					transform.position = Vector3.MoveTowards(transform.position, cell.position, _moveByPatternComponent.MoveSpeed * Time.deltaTime);
-					_snapToPosition = cell.position;
+					transform.position = Vector3.MoveTowards(transform.position, gridCell.transform.position, _moveByPatternComponent.MoveSpeed * Time.deltaTime);
+					_snapToPosition = gridCell.transform.position;
 					break;
 				}
 			}

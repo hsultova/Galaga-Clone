@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c421de1cd12307d4081c9e8ffd412756, type: 3}
   m_Name: BlueEnemyGroup
   m_EditorClassIdentifier: 
-  Enemies: 20
+  Enemies: 4
   Offset: 2
-  Prefab: {fileID: 4431960800551953726, guid: 0dde743e0b3d98e498466d0cad08c9d8, type: 3}
+  Enemy: {fileID: 4431960800551953726, guid: 0dde743e0b3d98e498466d0cad08c9d8, type: 3}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c421de1cd12307d4081c9e8ffd412756, type: 3}
   m_Name: RedEnemyGroup
   m_EditorClassIdentifier: 
-  Enemies: 16
+  Enemies: 4
   Offset: 2
-  Prefab: {fileID: 4431960800551953726, guid: d9e9f0fb6070f324e9d648313315b78f, type: 3}
+  Enemy: {fileID: 4431960800551953726, guid: d9e9f0fb6070f324e9d648313315b78f, type: 3}

@@ -5,5 +5,5 @@ public class EnemyGroup : ScriptableObject
 {
 	public int Enemies;
 	public float Offset;
-	public GameObject Prefab;
+	public GameObject Enemy;
 }
