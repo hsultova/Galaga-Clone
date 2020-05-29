@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,13 +11,11 @@ public class GameManager : MonoBehaviour
 	public GameObject Grid;
 	public SpawnPoint[] SpawnPoints;
 
-	public List<GridCell> GridCells = new List<GridCell>();
-
 	public int SpawnedEnemies = 0;
 	public GameObject EnemiesParentGameObject;
 	public GameObject DynamicGameObject;
 
-	private bool _isGridFilled = false;
+	public GridManager GridManager;
 
 	private int _score = 0;
 	public int Score
@@ -49,45 +45,28 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
+		GridManager = Grid.GetComponent<GridManager>();
+
 		StartCoroutine(SpawAtPointsInSequance(5));
-
-		foreach (Transform cell in Instance.Grid.transform)
-		{
-			var gridCell = cell.GetComponent<GridCell>();
-			GridCells.Add(gridCell);
-			gridCell.FillCell += OnFilledCell;
-		}
-
-		GridCells = GridCells.OrderByDescending(cell => cell.FillIndex).ToList();
 
 		foreach (var point in SpawnPoints)
 		{
 			foreach (var pair in point.EnemyGroups)
 				SpawnedEnemies += pair.EnemyGroup.Enemies;
 		}
-	}
-
-	private void OnFilledCell()
-	{
-		var filledCells = GridCells.Where(cell => cell.IsFree == false);
-		if (filledCells.Count() == SpawnedEnemies)
-		{
-			_isGridFilled = true;
-		}
-	}
+	}	
 
 	private void Update()
 	{
-		if (_isGridFilled)
-		{
-			MoveGrid();
-		}
+		GridManager.Move();
 	}
 
 	IEnumerator SpawAtPointsInSequance(int seconds)
 	{
+		int i = 0;
 		foreach (var point in SpawnPoints)
 		{
+			i++;
 			var offset = 0;
 			foreach (var pair in point.EnemyGroups)
 			{
@@ -98,7 +77,9 @@ public class GameManager : MonoBehaviour
 				pair.Pattern);
 				offset += 5;
 			}
-			yield return new WaitForSeconds(seconds);
+
+			if(i < SpawnPoints.Length)
+				yield return new WaitForSeconds(seconds);
 		}
 	}
 
@@ -115,10 +96,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void MoveGrid()
-	{
-		EnemiesParentGameObject.transform.position = Vector3.MoveTowards(EnemiesParentGameObject.transform.position, new Vector2(EnemiesParentGameObject.transform.position.x + 1, EnemiesParentGameObject.transform.position.y), 1f * Time.deltaTime);
-	}
+	
 
 	public void LoadGameOverScene()
 	{

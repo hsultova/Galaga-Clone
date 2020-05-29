@@ -7,6 +7,7 @@ public enum State
 	Move
 }
 
+[RequireComponent(typeof(MoveByPattern))]
 public class Enemy : MonoBehaviour
 {
 	public float Speed = 50f;
@@ -17,6 +18,8 @@ public class Enemy : MonoBehaviour
 	public EnemyType Type;
 
 	public int Score = 50;
+
+	public GridCell Cell;
 
 	//private State _state;
 	private float _shootTime = 0.0f;
@@ -58,6 +61,11 @@ public class Enemy : MonoBehaviour
 		{
 			//Fire();
 		}
+
+		if (Cell != null && Cell.transform.position != transform.position)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, Cell.transform.position, _moveByPatternComponent.MoveSpeed * 2 * Time.deltaTime);
+		}
 	}
 
 	private void MoveByGrid()
@@ -75,7 +83,7 @@ public class Enemy : MonoBehaviour
 
 		if (_canMoveByGrid && !_isMovingByGrid)
 		{
-			foreach (var gridCell in GameManager.Instance.GridCells)
+			foreach (var gridCell in GameManager.Instance.GridManager.GridCells)
 			{
 				if (gridCell.IsFree && gridCell.Type == Type)
 				{
@@ -83,6 +91,7 @@ public class Enemy : MonoBehaviour
 					_isMovingByGrid = true;
 					transform.position = Vector3.MoveTowards(transform.position, gridCell.transform.position, _moveByPatternComponent.MoveSpeed * Time.deltaTime);
 					_snapToPosition = gridCell.transform.position;
+					Cell = gridCell;
 					break;
 				}
 			}

@@ -129,6 +129,7 @@ MonoBehaviour:
     type: 3}
   Type: 2
   Score: 50
+  Cell: {fileID: 0}
 --- !u!114 &-4946707355680787617
 MonoBehaviour:
   m_ObjectHideFlags: 0
