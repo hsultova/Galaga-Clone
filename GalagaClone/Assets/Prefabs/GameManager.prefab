@@ -52,3 +52,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  GridCells: []
+  SpawnedEnemies: 0
+  EnemiesParentGameObject: {fileID: 0}
+  DynamicGameObject: {fileID: 0}

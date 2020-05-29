@@ -429,31 +429,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2613939943687249191, guid: cfd16f580d8a1274c8d8cf52a9dd3d5f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2613939944196398123, guid: cfd16f580d8a1274c8d8cf52a9dd3d5f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2613939945134385849, guid: cfd16f580d8a1274c8d8cf52a9dd3d5f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2613939945156544127, guid: cfd16f580d8a1274c8d8cf52a9dd3d5f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2613939945319441770, guid: cfd16f580d8a1274c8d8cf52a9dd3d5f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3699267807338871862, guid: cfd16f580d8a1274c8d8cf52a9dd3d5f,
         type: 3}
       propertyPath: m_IsActive
