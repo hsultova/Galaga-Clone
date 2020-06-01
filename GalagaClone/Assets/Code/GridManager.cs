@@ -2,11 +2,13 @@
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Logical representation of the grid. Manages all the grid behaviour like a grid movement left and right.
+/// </summary>
 public class GridManager : MonoBehaviour
 {
 	public float MovingSpeed = 0.5f;
 	public float BoundsOffset = 10f;
-	public bool IsGridFilled = false;
 
 	public List<GridCell> GridCells = new List<GridCell>();
 
@@ -15,7 +17,7 @@ public class GridManager : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
 		foreach (Transform cell in transform)
 		{
 			var gridCell = cell.GetComponent<GridCell>();
@@ -26,13 +28,16 @@ public class GridManager : MonoBehaviour
 		GridCells = GridCells.OrderByDescending(cell => cell.FillIndex).ToList();
 	}
 
+	private void OnDestroy()
+	{
+		foreach (var gridCell in GridCells)
+		{
+			gridCell.FillCell -= OnFilledCell;
+		}
+	}
+
 	private void OnFilledCell()
 	{
-		var filledCells = GridCells.Where(cell => cell.IsFree == false);
-		if (filledCells.Count() == GameManager.Instance.SpawnedEnemies)
-		{
-			IsGridFilled = true;
-		}
 	}
 
 	public void Move()
@@ -40,6 +45,7 @@ public class GridManager : MonoBehaviour
 		Vector3 left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
 		Vector3 right = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, Camera.main.nearClipPlane));
 
+		float offset = 7;
 		Vector2 newPosition = transform.position;
 		if (_isMovingRight)
 		{
@@ -50,7 +56,7 @@ public class GridManager : MonoBehaviour
 			newPosition.x = transform.position.x - MovingSpeed * Time.deltaTime;
 		}
 
-		if (newPosition.x > left.x + BoundsOffset - 7 && newPosition.x < right.x - BoundsOffset - 7)
+		if (newPosition.x > left.x + BoundsOffset - offset && newPosition.x < right.x - BoundsOffset - offset)
 		{
 			transform.position = newPosition;
 		}

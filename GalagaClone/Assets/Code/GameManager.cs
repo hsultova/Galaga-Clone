@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
 	public Text ScoreText;
 
 	public GameObject Grid;
+	public GridManager GridManager;
 	public SpawnPoint[] SpawnPoints;
-
+	public float SecondsBetweenSpawningGroups = 5f;
+	public float OffsetBetweenSpawningEnemies = 5f;
 	public int SpawnedEnemies = 0;
 	public GameObject EnemiesParentGameObject;
 	public GameObject DynamicGameObject;
-
-	public GridManager GridManager;
 
 	private int _score = 0;
 	public int Score
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 	{
 		GridManager = Grid.GetComponent<GridManager>();
 
-		StartCoroutine(SpawAtPointsInSequance(5));
+		StartCoroutine(SpawAtPointsInSequance(SecondsBetweenSpawningGroups, OffsetBetweenSpawningEnemies));
 
 		foreach (var point in SpawnPoints)
 		{
@@ -61,13 +61,13 @@ public class GameManager : MonoBehaviour
 		GridManager.Move();
 	}
 
-	IEnumerator SpawAtPointsInSequance(int seconds)
+	IEnumerator SpawAtPointsInSequance(float seconds, float offsetBetweenObjects)
 	{
 		int i = 0;
 		foreach (var point in SpawnPoints)
 		{
 			i++;
-			var offset = 0;
+			float offset = 0;
 			foreach (var pair in point.EnemyGroups)
 			{
 				SpawnEnemies(pair.EnemyGroup.Enemies,
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 				pair.EnemyGroup.Enemy,
 				new Vector2(point.transform.position.x + offset, point.transform.position.y),
 				pair.Pattern);
-				offset += 5;
+				offset += offsetBetweenObjects;
 			}
 
 			if(i < SpawnPoints.Length)
@@ -95,8 +95,6 @@ public class GameManager : MonoBehaviour
 			instantiatedEnemy.transform.SetParent(EnemiesParentGameObject.transform);
 		}
 	}
-
-	
 
 	public void LoadGameOverScene()
 	{

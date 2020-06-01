@@ -16,7 +16,7 @@ public class MoveByPattern : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		_waypoints = new GameObject[Pattern.transform.childCount];//Resources.FindObjectsOfTypeAll<Waypoint>();
+		_waypoints = new GameObject[Pattern.transform.childCount];
 		int i = 0;
 		foreach(Transform child in Pattern.transform)
 		{

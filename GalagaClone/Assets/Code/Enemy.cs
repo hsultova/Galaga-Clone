@@ -1,11 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-public enum State
-{
-	Stay,
-	Move
-}
+﻿using UnityEngine;
 
 [RequireComponent(typeof(MoveByPattern))]
 public class Enemy : MonoBehaviour
@@ -14,14 +7,12 @@ public class Enemy : MonoBehaviour
 	public float ShootPeriod = 5f;
 	public float MovePeriod = 2f;
 	public Transform BulletPrefab;
-
 	public EnemyType Type;
 
 	public int Score = 50;
 
 	public GridCell Cell;
 
-	//private State _state;
 	private float _shootTime = 0.0f;
 	private float _moveTime = 0.0f;
 
