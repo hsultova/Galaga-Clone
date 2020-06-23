@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
 
 		if (_canMoveByGrid && !_isMovingByGrid)
 		{
-			foreach (var gridCell in GameManager.Instance.GridManager.GridCells)
+			foreach (var gridCell in GameManager.Instance.GridManager.OrderedGridCells)
 			{
 				if (gridCell.IsFree && gridCell.Type == Type)
 				{

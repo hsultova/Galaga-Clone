@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 	public GridManager GridManager;
 	public SpawnPoint[] SpawnPoints;
 	public float SecondsBetweenSpawningGroups = 5f;
-	public float OffsetBetweenSpawningEnemies = 5f;
+	public float OffsetBetweenGoups = 5f;
 	public int SpawnedEnemies = 0;
 	public GameObject EnemiesParentGameObject;
 	public GameObject DynamicGameObject;
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 	{
 		GridManager = Grid.GetComponent<GridManager>();
 
-		StartCoroutine(SpawAtPointsInSequance(SecondsBetweenSpawningGroups, OffsetBetweenSpawningEnemies));
+		StartCoroutine(SpawAtPointsInSequance(SecondsBetweenSpawningGroups, OffsetBetweenGoups));
 
 		foreach (var point in SpawnPoints)
 		{
@@ -58,10 +58,9 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		GridManager.Move();
 	}
 
-	IEnumerator SpawAtPointsInSequance(float seconds, float offsetBetweenObjects)
+	IEnumerator SpawAtPointsInSequance(float seconds, float offsetBetweenGroups)
 	{
 		int i = 0;
 		foreach (var point in SpawnPoints)
@@ -75,7 +74,7 @@ public class GameManager : MonoBehaviour
 				pair.EnemyGroup.Enemy,
 				new Vector2(point.transform.position.x + offset, point.transform.position.y),
 				pair.Pattern);
-				offset += offsetBetweenObjects;
+				offset += offsetBetweenGroups;
 			}
 
 			if(i < SpawnPoints.Length)

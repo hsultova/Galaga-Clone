@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pattern: {fileID: 2312435939639309097, guid: a0663e712d631bd43b2961599823ac4f, type: 3}
-  MoveSpeed: 10
+  MoveSpeed: 11
