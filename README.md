@@ -9,6 +9,13 @@ C#, Unity
 
 **To Do:**
 - [ ] **Visual styling.**
+- [ ] Behaviour of the ship capturing.
+- [ ] Polish the movement of the enemies.
+- [ ] Expanding an enemy formation.
+- [x] Behaviour of the ship/player.
+- [x] Basic collision and wrap enemies on the screen.
+- [x] Behaviour of the enemies units.
+- [x] Basic movement of the enemies.
 
 
 ![galaga2](https://user-images.githubusercontent.com/13272856/127693051-8f819d2f-e7c2-400d-a237-86f20f5915e4.gif)
