@@ -20,4 +20,19 @@ C#, Unity
 
 ![galaga2](https://user-images.githubusercontent.com/13272856/127693051-8f819d2f-e7c2-400d-a237-86f20f5915e4.gif)
 
+**Custom tools:**
+- **Grid Editor** - a tool for generating the grid
+
+![image](https://user-images.githubusercontent.com/13272856/133926862-b5ad5405-3728-4820-ae33-5a3fbeb9bc2f.png)
+![image](https://user-images.githubusercontent.com/13272856/133926864-9e43a618-7459-4767-96cf-71be2e3b9433.png)
+
+- **Waypont Editor** -  a tool for creating wayponts used for movement by pattern of the enemies.
+
+When **Instantiate wayponts** is checked create a waypont by clicking on the screen. When ready, click **Save prefab**. Created prefab can be used in the **SpawnPoint** script.
+
+![image](https://user-images.githubusercontent.com/13272856/133926937-3f742cdf-f766-453f-96ab-d72851ecda66.png)
+![image](https://user-images.githubusercontent.com/13272856/133927036-9e933a9d-f0a5-421b-872c-8fd1889b1b5c.png)
+![image](https://user-images.githubusercontent.com/13272856/133927093-817faa05-ab83-49b2-bfce-a5d6bb8efa3d.png)
+
+
 
